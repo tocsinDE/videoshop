@@ -100,9 +100,9 @@ class CatalogController {
 	// deswegen wird die update-Methode aufgerufen
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)
 	public String comment(@RequestParam("pid") Disc disc, @RequestParam("comment") String comment,
-			@RequestParam("rating") int rating) {
+			@RequestParam("rating") int rating, @RequestParam("user") String user) {
 
-		disc.addComment(new Comment(comment, rating, businessTime.getTime()));
+		disc.addComment(new Comment(comment, rating, businessTime.getTime(), user));
 		videoCatalog.save(disc);
 
 		return "redirect:detail/" + disc.getIdentifier();
